@@ -1,0 +1,10 @@
+{
+  "skills": [
+    { "name": "game-arknights", "path": "games/arknights", "title": "明日方舟", "kind": "game", "games": ["arknights"], "scripts": ["maa"] },
+    { "name": "game-endfield", "path": "games/endfield", "title": "明日方舟：终末地", "kind": "game", "games": ["endfield"], "scripts": ["maaend"] },
+    { "name": "game-starrail", "path": "games/starrail", "title": "崩坏：星穹铁道", "kind": "game", "games": ["starrail"], "scripts": ["march7th"] },
+    { "name": "maa", "path": "scripts/maa", "title": "MAA", "kind": "script", "games": ["arknights"], "scripts": ["maa"] },
+    { "name": "maaend", "path": "scripts/maaend", "title": "MaaEnd", "kind": "script", "games": ["endfield"], "scripts": ["maaend"] },
+    { "name": "march7th", "path": "scripts/march7th", "title": "三月七小助手", "kind": "script", "games": ["starrail"], "scripts": ["march7th"] }
+  ]
+}
