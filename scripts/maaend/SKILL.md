@@ -19,7 +19,8 @@ description: MaaEnd（明日方舟：终末地自动化）的安装与运行。�
 - PC 版**要从鹰角官方启动器打开**：直接运行 `Endfield.exe` 会提示「请通过官方启动器打开游戏」。所以「启动游戏」的程序位置要填启动器（不是 `Endfield.exe`），进程名保持 `Endfield.exe`；启动器打开后可能还要点一下「开始游戏」——游戏窗口没出来、MaaEnd 报找不到窗口时，就是这一步没走完：截图看看，点启动器里的开始按钮，等游戏进到主界面后用 `intervention_done(retry)`（处理异常时）或 `script_run` 重新运行。
 - 想知道有哪些任务：`script_analyze` 会列出 interface.json 里的全部任务（中文名）。
 
-## 待确认（真机测试后补充）
+## 运行失败时
 
-- 退出码是否能区分成功和失败；`debug/maa.log` 里的完成和错误标志，用来补充日志规则。
-- PC 版游戏的进程名（目前按 `Endfield.exe`）。
+- 先 `script_run_log` 看这次运行的日志，再看 MaaEnd 目录里的 `debug/maa.log`（`script_config_get` 读不到它，用文件读取工具只读不改）。
+- 报「LaunchGamePC 启动失败」（`go-service.exe --pretask LaunchGamePC`）：这是 MaaEnd 自己的「打开游戏」没打开启动器，多半是它设置里的启动器路径不对（例如 `LaunchGamePCLauncherExe` 指向的 `Launcher.exe` 不在了）。告诉用户在 MaaEnd 里改成正确的启动器路径；或者关掉 MaaEnd 自己的打开游戏，改由本软件在脚本页「启动游戏」里打开。
+- 游戏的进程名不是 `Endfield.exe`（例如国际服）：在脚本页「启动游戏」里改进程名和程序位置，或用 `game_path_set` 保存。
