@@ -6,7 +6,8 @@ description: 崩坏：星穹铁道的活动和进度：活动页、剩余时间�
 # 崩坏：星穹铁道（官服，PC 版）
 
 - 活动时间以 B 站 WIKI 为准：先 `game_sites_refresh`（game=starrail）。WIKI 打不开时用 `web_fetch` 看官网新闻 https://sr.mihoyo.com/news 。
-- 游戏是 **PC 窗口**（`screen_capture` 用 target=window，window 填「崩坏：星穹铁道」；找不到就先 `window_list`）。三月七跑日常时会占用鼠标键盘：先 `script_runs` 看有没有三月七正在运行，有就等它结束。
+- 游戏是 **PC 窗口**（`screen_capture` 用 target=window，window 填「崩坏：星穹铁道」；找不到就先 `window_list`）。三月七跑日常时会占用鼠标键盘：先 `script_runs` 看有没有三月七正在运行，有就等它结束，期间不要用 `screen_tap` / `screen_key` 操作桌面。
+- 游戏没开时用 `game_launch`（game=starrail）打开；窗口被别的窗口挡住，点击前先 `window_focus`。
 
 ## 进到活动页（只看，不花东西）
 
@@ -19,7 +20,7 @@ description: 崩坏：星穹铁道的活动和进度：活动页、剩余时间�
 
 ## 记录
 
-`game_record`（game=starrail）每个活动一条：名称用活动名（WIKI 上写作「位面分裂」第二十六期 这类，带不带书名号都可以）；剩余时间照原文填 `remaining`；没做完的写进 `todo`，例如「每日实训 300/500」「活动关卡 3/5」。
+`game_record`（game=starrail）每个活动一条：名称用活动名（WIKI 上写作「位面分裂」第二十六期 这类，带不带书名号都可以）；剩余时间照原文填 `remaining`；进度填 `progress`（如「活动关卡 3/5」「每日实训 300/500」）；没做完的写进 `todo`，例如「活动奖励还有 2 个没领」。
 
 ## 和上面说的不一样时
 
