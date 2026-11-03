@@ -6,12 +6,13 @@
 
 | 技能 | 是什么 | 游戏 | 脚本 |
 |---|---|---|---|
-| `game-arknights` | 明日方舟：活动页、剩余时间、活动商店和任务 | arknights | maa |
+| `game-arknights` | 明日方舟：活动页、剩余时间、活动商店、任务和剿灭 | arknights | maa |
 | `game-endfield` | 明日方舟：终末地：活动时间来源、游戏里的剩余时间和没做完的事 | endfield | maaend |
 | `game-starrail` | 崩坏：星穹铁道：活动页、剩余时间、每日实训和模拟宇宙积分 | starrail | march7th |
-| `maa` | MAA（明日方舟小助手）的安装、运行与设置 | arknights | maa |
-| `maaend` | MaaEnd（终末地自动化）的安装与运行 | endfield | maaend |
-| `march7th` | 三月七小助手（星穹铁道自动化）的安装与运行 | starrail | march7th |
+| `maa` | MAA（明日方舟小助手）的安装、运行、设置和报错处理，用作业打关卡 | arknights | maa |
+| `maaend` | MaaEnd（终末地自动化）的安装、运行和报错处理 | endfield | maaend |
+| `march7th` | 三月七小助手（星穹铁道自动化）的安装、运行和报错处理 | starrail | march7th |
+| `script-troubleshooting` | 脚本出错、卡住时怎么查，用哪些工具 | 全部 | 全部 |
 
 ## 软件怎么用它
 
@@ -29,6 +30,7 @@
 index.json                 技能清单（软件按它列出技能）
 games/<游戏 id>/SKILL.md    一个游戏的技能
 scripts/<脚本包 id>/SKILL.md 一个脚本的技能
+general/<技能名>/SKILL.md   不限游戏和脚本的通用技能
 ```
 
 每个技能一个文件夹，里面是 `SKILL.md`（需要的话可以放图片等附带文件，SKILL.md 里用相对路径引用）。`SKILL.md` 以 frontmatter 开头：
