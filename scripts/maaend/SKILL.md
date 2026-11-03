@@ -1,6 +1,6 @@
 ---
 name: maaend
-description: MaaEnd（明日方舟：终末地自动化）的安装与运行。用户提到终末地、MaaEnd 时使用。
+description: MaaEnd（明日方舟：终末地自动化）的安装、运行和报错处理。用户提到终末地、MaaEnd，或 MaaEnd 运行失败、找不到游戏窗口时使用。
 ---
 
 # MaaEnd（终末地）
@@ -21,6 +21,8 @@ description: MaaEnd（明日方舟：终末地自动化）的安装与运行。�
 
 ## 运行失败时
 
-- 先 `script_run_log` 看这次运行的日志，再看 MaaEnd 目录里的 `debug/maa.log`（`script_config_get` 读不到它，用文件读取工具只读不改）。
+- 先 `script_run_log` 看这次运行的日志（`levels: ["error", "warning"]` 只看问题），再看 MaaEnd 目录里的 `debug/maa.log`（`script_config_get` 读不到它，用文件读取工具只读不改；PowerShell 里加 `-Encoding UTF8 -Tail 200`，只读最后一段）。
+- 看画面：PC 实例用 `screen_capture`（target=window，先 `window_list` 找终末地窗口），模拟器实例用 target=emulator。PC 实例运行时占着鼠标键盘，不要同时点击桌面。
+- 游戏刚更新后各处都识别不了：`script_changelog` 看 MaaEnd 新版有没有写适配，`script_update` 更新后重跑。
 - 报「LaunchGamePC 启动失败」（`go-service.exe --pretask LaunchGamePC`）：这是 MaaEnd 自己的「打开游戏」没打开启动器，多半是它设置里的启动器路径不对（例如 `LaunchGamePCLauncherExe` 指向的 `Launcher.exe` 不在了）。告诉用户在 MaaEnd 里改成正确的启动器路径；或者关掉 MaaEnd 自己的打开游戏，改由本软件在脚本页「启动游戏」里打开。
 - 游戏的进程名不是 `Endfield.exe`（例如国际服）：在脚本页「启动游戏」里改进程名和程序位置，或用 `game_path_set` 保存。
