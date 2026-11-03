@@ -5,6 +5,7 @@
     { "name": "game-starrail", "path": "games/starrail", "title": "崩坏：星穹铁道", "kind": "game", "games": ["starrail"], "scripts": ["march7th"] },
     { "name": "maa", "path": "scripts/maa", "title": "MAA", "kind": "script", "games": ["arknights"], "scripts": ["maa"] },
     { "name": "maaend", "path": "scripts/maaend", "title": "MaaEnd", "kind": "script", "games": ["endfield"], "scripts": ["maaend"] },
-    { "name": "march7th", "path": "scripts/march7th", "title": "三月七小助手", "kind": "script", "games": ["starrail"], "scripts": ["march7th"] }
+    { "name": "march7th", "path": "scripts/march7th", "title": "三月七小助手", "kind": "script", "games": ["starrail"], "scripts": ["march7th"] },
+    { "name": "script-troubleshooting", "path": "general/script-troubleshooting", "title": "脚本出错排查", "kind": "general" }
   ]
 }
