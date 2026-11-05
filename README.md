@@ -26,12 +26,17 @@
 
 ## 目录和格式
 
+按游戏分：一个游戏一个文件夹，里面放这个游戏本身的技能和玩这个游戏的各个脚本的技能，和软件「技能」页的分法一样。
+
 ```
-index.json                 技能清单（软件按它列出技能）
-games/<游戏 id>/SKILL.md    一个游戏的技能
-scripts/<脚本包 id>/SKILL.md 一个脚本的技能
-general/<技能名>/SKILL.md   不限游戏和脚本的通用技能
+index.json                              技能清单（软件按它列出技能）
+games/<游戏 id>/game-<游戏 id>/SKILL.md  这个游戏本身的技能（活动、界面、任务）
+games/<游戏 id>/<脚本包 id>/SKILL.md     玩这个游戏的一个脚本的技能（安装、运行、报错）
+scripts/<脚本包 id>/SKILL.md            不属于哪个游戏的脚本的技能
+general/<技能名>/SKILL.md               不限游戏和脚本的通用技能
 ```
+
+例如明日方舟：`games/arknights/game-arknights/`（游戏）和 `games/arknights/maa/`（MAA）。
 
 每个技能一个文件夹，里面是 `SKILL.md`（需要的话可以放图片等附带文件，SKILL.md 里用相对路径引用）。`SKILL.md` 以 frontmatter 开头：
 
@@ -59,7 +64,7 @@ description: 一两句话：做什么，用户说什么时用（agent 靠它决�
 
 ## 贡献
 
-- 新游戏：`games/<游戏 id>/SKILL.md`，写清楚活动、任务、邮件在哪个界面，剩余时间怎么写，哪些操作不能做（不花资源、不点购买）。
-- 新脚本：`scripts/<脚本包 id>/SKILL.md`，写安装要注意的、常用任务、配置文件在哪、常见报错怎么处理。
+- 新游戏：`games/<游戏 id>/game-<游戏 id>/SKILL.md`，写清楚活动、任务、邮件在哪个界面，剩余时间怎么写，哪些操作不能做（不花资源、不点购买）。
+- 新脚本：放到它玩的游戏下面，`games/<游戏 id>/<脚本包 id>/SKILL.md`（不属于哪个游戏的放 `scripts/<脚本包 id>/`），写安装要注意的、常用任务、配置文件在哪、常见报错怎么处理。
 - 改了已有技能就直接改对应的 SKILL.md，并在 `index.json` 里保持条目一致；用户那边会收到「有新版」。
 - 只写有确切出处的做法，不放账号、密码、CDK 等私人信息。
