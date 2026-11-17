@@ -1,12 +1,12 @@
 {
   "skills": [
-    { "name": "game-arknights", "path": "games/arknights/game-arknights", "title": "明日方舟", "kind": "game", "games": ["arknights"], "scripts": ["maa"] },
-    { "name": "game-endfield", "path": "games/endfield/game-endfield", "title": "明日方舟：终末地", "kind": "game", "games": ["endfield"], "scripts": ["maaend"] },
-    { "name": "game-starrail", "path": "games/starrail/game-starrail", "title": "崩坏：星穹铁道", "kind": "game", "games": ["starrail"], "scripts": ["march7th"] },
-    { "name": "maa", "path": "games/arknights/maa", "title": "MAA", "kind": "script", "games": ["arknights"], "scripts": ["maa"] },
-    { "name": "maa-copilot", "path": "games/arknights/maa-copilot", "title": "MAA 抄作业", "kind": "script", "games": ["arknights"], "scripts": ["maa"] },
-    { "name": "maaend", "path": "games/endfield/maaend", "title": "MaaEnd", "kind": "script", "games": ["endfield"], "scripts": ["maaend"] },
-    { "name": "march7th", "path": "games/starrail/march7th", "title": "三月七小助手", "kind": "script", "games": ["starrail"], "scripts": ["march7th"] },
-    { "name": "script-troubleshooting", "path": "general/script-troubleshooting", "title": "脚本出错排查", "kind": "general" }
+    { "name": "game-arknights", "path": "games/arknights/game-arknights", "title": "明日方舟", "kind": "game", "games": ["arknights"], "scripts": ["maa"], "version": "1.1.0", "changes": "模拟器里只用模拟器通道点按；内置浏览器交给子 agent 用", "requires": ">=2.1.0" },
+    { "name": "game-endfield", "path": "games/endfield/game-endfield", "title": "明日方舟：终末地", "kind": "game", "games": ["endfield"], "scripts": ["maaend"], "version": "1.1.0", "changes": "内置浏览器交给子 agent 用", "requires": ">=2.1.0" },
+    { "name": "game-starrail", "path": "games/starrail/game-starrail", "title": "崩坏：星穹铁道", "kind": "game", "games": ["starrail"], "scripts": ["march7th"], "version": "1.1.0", "changes": "内置浏览器交给子 agent 用", "requires": ">=2.1.0" },
+    { "name": "maa", "path": "games/arknights/maa", "title": "MAA", "kind": "script", "games": ["arknights"], "scripts": ["maa"], "version": "1.1.0", "changes": "抄作业改由 maa-copilot 技能做；模拟器里不用桌面鼠标", "requires": ">=2.1.0" },
+    { "name": "maa-copilot", "path": "games/arknights/maa-copilot", "title": "MAA 抄作业", "kind": "script", "games": ["arknights"], "scripts": ["maa"], "version": "1.0.0", "changes": "新技能：挑作业、下载、运行、核对三星的脚本", "requires": ">=2.1.0" },
+    { "name": "maaend", "path": "games/endfield/maaend", "title": "MaaEnd", "kind": "script", "games": ["endfield"], "scripts": ["maaend"], "version": "1.0.0", "requires": ">=2.1.0" },
+    { "name": "march7th", "path": "games/starrail/march7th", "title": "三月七小助手", "kind": "script", "games": ["starrail"], "scripts": ["march7th"], "version": "1.1.0", "changes": "提示有新版本又在新内容处失败时，先更新再重跑", "requires": ">=2.1.0" },
+    { "name": "script-troubleshooting", "path": "general/script-troubleshooting", "title": "脚本出错排查", "kind": "general", "version": "1.1.0", "changes": "先更新再重跑、先对照报错表、中文文件编码、派子 agent 的做法", "requires": ">=2.1.0" }
   ]
 }

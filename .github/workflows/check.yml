@@ -1,0 +1,19 @@
+name: check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      # 格式，以及改过文件的技能升了版本号（和推送前 / PR 的目标分支比）
+      - run: node .github/scripts/check.mjs "${{ github.event.pull_request.base.sha || github.event.before }}"
