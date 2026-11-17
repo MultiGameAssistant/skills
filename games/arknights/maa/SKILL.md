@@ -15,7 +15,7 @@ description: MAA（MaaAssistantArknights，明日方舟小助手）的安装、�
 - 前提：本地配置里要勾选好任务（例如刷哪一关、用不用理智药）。还没设置过时，用 `script_settings` 打开 MAA 的设置界面让用户配好任务、关掉窗口，设置会存进本地配置。
 - 想换关卡、理智药数量等：用 `script_settings` 让用户在 MAA 界面里改，或先 `script_config_get` 读 `config/gui.new.json`，找到对应的键再用 `script_config_set` 改本地配置。`daily` 任务本身没有关卡参数。
 - 不同账号、不同的任务组合可以存成几份配置（`script_profiles`），运行时用 `profile` 选一份。
-- 运行中看进度用 `script_runs`（带 run_id）。**不要自己再开 MAA.exe**：平台正在拉起 MAA 时手动再开一个，第二个只会提示「Secondary launch detected」然后退出，这次运行会被记成「没有看到完成标志」的失败。
+- 运行中看进度用 `script_runs`（带 run_id；要等它跑完就加 `wait_seconds`，不用反复查）。**不要自己再开 MAA.exe**：平台正在拉起 MAA 时手动再开一个，第二个只会提示「Secondary launch detected」然后退出，这次运行会被记成「没有看到完成标志」的失败。
 
 ## 设置
 

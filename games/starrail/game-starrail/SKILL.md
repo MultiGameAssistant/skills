@@ -5,7 +5,7 @@ description: 崩坏：星穹铁道的活动和进度：活动页、剩余时间�
 
 # 崩坏：星穹铁道（官服，PC 版）
 
-- 活动时间以 B 站 WIKI 为准：先 `game_sites_refresh`（game=starrail）。WIKI 打不开时用 `web_fetch` 看官网新闻 https://sr.mihoyo.com/news 。
+- 活动时间以 B 站 WIKI 为准：先 `game_sites_refresh`（game=starrail）。WIKI 打不开时用 `web_fetch` 看官网新闻 https://sr.mihoyo.com/news （只拿到空壳、没有正文时，用内置浏览器：`browser_navigate` 打开，`browser_text` 读正文）。
 - 游戏是 **PC 窗口**（`screen_capture` 用 target=window，window 填「崩坏：星穹铁道」；找不到就先 `window_list`）。三月七跑日常时会占用鼠标键盘：先 `script_runs` 看有没有三月七正在运行，有就等它结束，期间不要用 `screen_tap` / `screen_key` 操作桌面。
 - 游戏没开时用 `game_launch`（game=starrail）打开；窗口被别的窗口挡住，点击前先 `window_focus`。
 

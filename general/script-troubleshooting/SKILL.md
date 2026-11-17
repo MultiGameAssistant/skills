@@ -29,7 +29,7 @@ description: 脚本运行出错、卡住、没跑完时怎么查、该用哪些�
 
 - 只读不改。用文件读取工具，或 `Get-Content -Encoding UTF8 -Tail 200`；不加 `-Encoding UTF8` 中文会是乱码。
 - 只读最后一段，再按关键字筛（`Select-String`）。不要整个文件读进来。
-- 等脚本往下跑时，隔一两分钟用 `script_runs` 看一次就行，不要在 PowerShell 里写几分钟的等待循环：干预会话只有 15 分钟。
+- 等脚本往下跑时，用 `script_runs` 带 `run_id` 和 `wait_seconds` 等它结束（谁开的这次运行都行，重跑会跟到最后一次），不用自己隔几分钟查一次，也不要在 PowerShell 里写等待循环。干预会话只有 15 分钟，`wait_seconds` 不要超过剩下的时间；等到时间还没结束会说明，再调一次。
 
 ## 4. 判断原因、动手
 

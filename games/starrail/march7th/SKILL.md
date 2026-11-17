@@ -34,5 +34,5 @@ description: 三月七小助手（March7thAssistant，崩坏：星穹铁道自�
 - 先 `script_run_log` 看这次运行的输出：`levels: ["error", "warning"]` 只看问题，或 `search` 搜「ERROR」「错误」，看停在哪个任务。
 - 「游戏分辨率获取失败」「找不到游戏窗口」：游戏没开、被最小化或分辨率不是三月七支持的（窗口模式 1920×1080）。`screen_capture`（target=window，window 填「崩坏：星穹铁道」）看看，请用户调整后重跑。
 - 游戏刚更新后各处都识别不了：三月七多半要跟着更新。`script_changelog` 看新版有没有写适配，`script_update` 更新后重跑。
-- 三月七运行时占着鼠标键盘：它还在跑（`script_runs`）就不要用 `screen_tap` / `screen_key` 操作桌面，会和它抢。要停下先 `script_stop`。
+- 三月七运行时占着鼠标键盘：它还在跑（`script_runs`；要等它跑完就带 `run_id` 和 `wait_seconds`）就不要用 `screen_tap` / `screen_key` 操作桌面，会和它抢。要停下先 `script_stop`。
 - 要输入账号密码或验证码、要更新游戏时停下，交给用户。

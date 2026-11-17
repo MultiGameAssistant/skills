@@ -5,7 +5,7 @@ description: 明日方舟：终末地的活动和进度：活动时间来自 SRA
 
 # 明日方舟：终末地（官服）
 
-- 活动时间、版本和每个活动的说明由插件每天从 SRA 公共 API 读（`game_sites_refresh` 可以马上刷新），不用模型。那里没有的（比如刚发的公告），再用 `web_fetch` 看官网新闻 https://endfield.hypergryph.com/news ，从公告里找活动名和起止时间，用 `game_record` 记下（source=site，写明 `url`）。
+- 活动时间、版本和每个活动的说明由插件每天从 SRA 公共 API 读（`game_sites_refresh` 可以马上刷新），不用模型。那里没有的（比如刚发的公告），再用 `web_fetch` 看官网新闻 https://endfield.hypergryph.com/news （只拿到空壳、没有正文时，用内置浏览器：`browser_navigate` 打开，`browser_text` 读正文），从公告里找活动名和起止时间，用 `game_record` 记下（source=site，写明 `url`）。
 - 游戏可能是 PC 窗口，也可能在模拟器里（看 MaaEnd 的实例用的是哪个控制器）。PC 版先 `window_list`（filter 填「Endfield」或「终末地」）找窗口，再 `screen_capture`（target=window）；模拟器里用 target=emulator。MaaEnd 正在跑时（`script_runs`）先等它结束，期间不要点击。
 - 游戏没开时用 `game_launch`（game=endfield）。PC 版会打开鹰角启动器，启动器里还要点「开始游戏」：截图找到按钮点一下，等进到主界面再看。
 
