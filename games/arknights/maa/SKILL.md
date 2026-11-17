@@ -1,6 +1,6 @@
 ---
 name: maa
-description: MAA（MaaAssistantArknights，明日方舟小助手）的安装、运行、设置和报错处理，以及用作业站的作业打剿灭、活动关卡。用户提到 MAA、明日方舟日常、刷理智、基建、公招、剿灭、抄作业，或 MAA 运行失败、卡在「开始唤醒」时使用。
+description: MAA（MaaAssistantArknights，明日方舟小助手）的安装、运行、设置和报错处理，用户提到 MAA、明日方舟日常、刷理智、基建、公招，或 MAA 运行失败、卡在「开始唤醒」时使用。用作业（抄作业）打活动关、剿灭用 maa-copilot 技能。
 ---
 
 # MAA（明日方舟）
@@ -32,6 +32,8 @@ description: MAA（MaaAssistantArknights，明日方舟小助手）的安装、�
 2. 平台日志说不清时看 MAA 自己的日志（只读）：`debug/gui.log` 是任务进度和版本更新记录，`debug/asst.log` 是识别细节。两个都是 UTF-8，PowerShell 里用 `Get-Content -Encoding UTF8 -Tail 200`，否则中文是乱码。
 3. 看画面：`screen_capture`（target=emulator）。不要用 PowerShell 跑 `adb exec-out screencap -p > 文件`，图片会被改坏。
 
+游戏在模拟器里：要在画面上点、返回，用 `screen_tap` / `screen_key`（target=emulator，坐标用截图上的），**不要用桌面鼠标或窗口点击**（会抢用户的鼠标，用户明确反对过），也不要拿截图坐标直接 `adb shell input tap`（截图是缩小过的，会点偏）。
+
 常见原因：
 
 | 日志里看到 | 原因 | 怎么办 |
@@ -41,20 +43,11 @@ description: MAA（MaaAssistantArknights，明日方舟小助手）的安装、�
 | 运行到一半 MAA 自己退出又启动 | MAA 自动更新后重启 | 等它更新完，retry |
 | 画面一直停在模拟器桌面，游戏没打开 | 游戏没启动起来 | `game_launch`（game=arknights）。报「不知道游戏在模拟器里的包名」时，请用户在脚本页「启动游戏」里填包名：官服 `com.hypergryph.arknights`，B 服 `com.hypergryph.arknights.bilibili` |
 | 「连接失败」「adb」，或截图报 device offline / not found | 模拟器没开好、ADB 地址变了 | `emulator_status`；没在运行就 `emulator_start`，然后 retry |
-| 理智作战（剿灭）报 `UnableToAgent2` | 多半是当期剿灭关卡还没打满 400 杀，代理指挥没解锁 | 告诉用户先手动打一次（或用下面的作业打），之后 MAA 才能代理 |
+| 理智作战（剿灭）报 `UnableToAgent2` | 多半是当期剿灭关卡还没打满 400 杀，代理指挥没解锁 | 用作业打一次满 400 杀（maa-copilot），或请用户手动打，之后 MAA 才能代理 |
 | 停在某个界面不动 | 弹窗、公告、更新提示 | 截图处理后 retry；要输入账号密码或验证码时停下，交给用户 |
 
 ## 用作业打关卡（自动战斗）
 
-剿灭没解锁代理、活动关卡、危机合约这类没法代理的关卡，可以用作业站的作业让 MAA 自动打。
+剿灭没解锁代理、活动关卡、突袭这类没法代理的关卡，用作业站的作业让 MAA 自动打：**按 maa-copilot 技能做**（它带了挑作业、下载、运行的脚本）。不要自己另写运行 MaaCore 的脚本，也不要用 PowerShell 下载作业文件。
 
-1. 找作业：作业站 https://prts.plus 。也可以直接读接口（不用登录）：
-   - `https://prts.maa.plus/copilot/query?levelKeyword=<关卡中文名>&orderBy=hot&desc=true&limit=20`，每项的 `content` 是作业 JSON 文本，里面的 `stage_name` 是关卡代号（例如灰石剧场 `camp_r_34`）。
-   - 列表里的作业不带完整操作，单份要 `https://prts.maa.plus/copilot/get/<作业 id>`。
-2. 挑作业：
-   - 作业里的干员（`opers`）用户都有，`groups` 每组至少有一个。
-   - `requirements` 里的精英化和技能等级够。技能等级要求 10 是专精三级，用户没有就容易漏怪（剿灭打不满 400）。
-   - 同样能用的，选 `rating_level` 和 `hot_score` 高的。
-   - 用户的干员和练度可以在 MAA「小工具 → 干员识别」里识别，结果在 `data/OperBoxData.json`。
-3. 打：游戏要停在关卡详情页（右下有「开始行动」）。请用户在 MAA「自动战斗」页粘贴 `maa://<作业 id>` 后开始；打完看结果（剿灭看击杀数是不是 400/400），没满就换一份作业。
-4. 打之前确认没有会关掉模拟器的任务快开始了（`pipeline_status`、`script_runs`），不然打到一半模拟器被关，这次作战作废。
+用户想自己在 MAA 界面里打时：作业站 https://prts.plus 找到作业，在 MAA「自动战斗」页粘贴 `maa://<作业 id>`，游戏停在关卡详情页（右下有「开始行动」）后开始。打之前确认没有会关掉模拟器的任务快开始了（`pipeline_status`、`script_runs`）。

@@ -5,8 +5,8 @@ description: 明日方舟的活动和进度：从哪里看活动、剩余时间�
 
 # 明日方舟（官服）
 
-- 活动时间以 PRTS 为准：先 `game_sites_refresh`（game=arknights），不用自己去网页上找。PRTS 打不开时再用 `web_fetch` 看官网公告 https://ak.hypergryph.com/news （只拿到空壳、没有正文时，用内置浏览器：`browser_navigate` 打开，`browser_text` 读正文）。
-- 游戏在**模拟器**里（`screen_capture` 用 target=emulator）。MAA 跑日常时会占用模拟器：先 `script_runs` 看有没有 MAA 正在运行，有就等它结束再看，不要打断。
+- 活动时间以 PRTS 为准：先 `game_sites_refresh`（game=arknights），不用自己去网页上找。PRTS 打不开时再用 `web_fetch` 看官网公告 https://ak.hypergryph.com/news （只拿到空壳、没有正文时，用软件内置浏览器：派一个子 agent 用 `browser_navigate` 打开、`browser_text` 读正文——主对话里没有 `browser_*` 工具，不用去找；也不要用 web-access 那套 CDP 浏览器）。
+- 游戏在**模拟器**里：截图 `screen_capture`、点按 `screen_tap`、返回 `screen_key key=back` 都用 target=emulator，坐标用截图上的像素；不要用桌面鼠标或窗口点击。MAA 跑日常时会占用模拟器：先 `script_runs` 看有没有 MAA 正在运行，有就等它结束再看，不要打断。
 - 游戏没开时用 `game_launch`（game=arknights）打开，不要自己用 adb 拉起；截图报 device offline 时先 `emulator_status`。
 
 ## 进到活动页（只看，不花东西）

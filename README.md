@@ -9,10 +9,11 @@
 | `game-arknights` | 明日方舟：活动页、剩余时间、活动商店、任务和剿灭 | arknights | maa |
 | `game-endfield` | 明日方舟：终末地：活动时间来源、游戏里的剩余时间和没做完的事 | endfield | maaend |
 | `game-starrail` | 崩坏：星穹铁道：活动页、剩余时间、每日实训和模拟宇宙积分 | starrail | march7th |
-| `maa` | MAA（明日方舟小助手）的安装、运行、设置和报错处理，用作业打关卡 | arknights | maa |
+| `maa` | MAA（明日方舟小助手）的安装、运行、设置和报错处理 | arknights | maa |
+| `maa-copilot` | 用 MAA 抄作业打活动关、突袭、剿灭：按干员挑作业、下载、运行、核对三星（带脚本，要 Python 3.12） | arknights | maa |
 | `maaend` | MaaEnd（终末地自动化）的安装、运行和报错处理 | endfield | maaend |
 | `march7th` | 三月七小助手（星穹铁道自动化）的安装、运行和报错处理 | starrail | march7th |
-| `script-troubleshooting` | 脚本出错、卡住时怎么查，用哪些工具 | 全部 | 全部 |
+| `script-troubleshooting` | 脚本出错、卡住时怎么查，用哪些工具，怎么判断原因、派子 agent | 全部 | 全部 |
 
 ## 软件怎么用它
 
