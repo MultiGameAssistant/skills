@@ -1,26 +1,33 @@
 # MultiGameAssistant 技能库
 
-[MultiGameAssistant](https://github.com/haaahhhis/MultiGameAssistant) 的游戏和脚本技能。软件只自带维持基本功能的核心技能（游戏资讯、读网页、分析脚本、编排流水线），某个游戏怎么看活动、某个脚本怎么装怎么跑，放在这里，用户在软件的「技能 → 技能库」里按需下载。
+[MultiGameAssistant](https://github.com/haaahhhis/MultiGameAssistant) 的脚本包、游戏包和技能。软件只自带维持基本功能的核心技能（游戏资讯、读网页、分析脚本、编排流水线），这些受保护、不能改；某个游戏的活动从哪读、某个脚本怎么装怎么跑，都放在这里，用户在软件的「技能」页里下载、删除。
+
+分三类：
+
+- **脚本包**：文件夹里有 `adg.script.yaml`（脚本怎么装、有哪些任务、跑之前改哪些设置）和 `SKILL.md`（给 agent 的做法）。
+- **游戏包**：文件夹里有 `game.yaml`（游戏页的活动来源、时区、画面）和 `SKILL.md`（游戏里怎么看活动）。
+- **技能**：只有 `SKILL.md`（和它带的脚本、参考文件）。
 
 ## 有哪些
 
-| 技能 | 是什么 | 游戏 | 脚本 |
-|---|---|---|---|
-| `game-arknights` | 明日方舟：活动页、剩余时间、活动商店、任务和剿灭 | arknights | maa |
-| `game-endfield` | 明日方舟：终末地：活动时间来源、游戏里的剩余时间和没做完的事 | endfield | maaend |
-| `game-starrail` | 崩坏：星穹铁道：活动页、剩余时间、每日实训和模拟宇宙积分 | starrail | march7th |
-| `maa` | MAA（明日方舟小助手）的安装、运行、设置和报错处理 | arknights | maa |
-| `maa-copilot` | 用 MAA 抄作业打活动关、突袭、剿灭：按干员挑作业、下载、运行、核对三星（带脚本，要 Python 3.12） | arknights | maa |
-| `maaend` | MaaEnd（终末地自动化）的安装、运行和报错处理 | endfield | maaend |
-| `march7th` | 三月七小助手（星穹铁道自动化）的安装、运行和报错处理 | starrail | march7th |
-| `script-troubleshooting` | 脚本出错、卡住时怎么查，用哪些工具，怎么判断原因、派子 agent | 全部 | 全部 |
+| 名字 | 类别 | 是什么 | 游戏 | 脚本 |
+|---|---|---|---|---|
+| `game-arknights` | 游戏包 | 明日方舟：活动页、剩余时间、活动商店、任务和剿灭 | arknights | maa |
+| `game-endfield` | 游戏包 | 明日方舟：终末地：活动时间来源、游戏里的剩余时间和没做完的事 | endfield | maaend |
+| `game-starrail` | 游戏包 | 崩坏：星穹铁道：活动页、剩余时间、每日实训和模拟宇宙积分 | starrail | march7th |
+| `maa` | 脚本包 | MAA（明日方舟小助手）的安装、运行、设置和报错处理 | arknights | maa |
+| `maa-copilot` | 技能 | 用 MAA 抄作业打活动关、突袭、剿灭：按干员挑作业、下载、运行、核对三星（带脚本，要 Python 3.12） | arknights | maa |
+| `maaend` | 脚本包 | MaaEnd（终末地自动化）的安装、运行和报错处理 | endfield | maaend |
+| `march7th` | 脚本包 | 三月七小助手（星穹铁道自动化）的安装、运行和报错处理 | starrail | march7th |
+| `script-troubleshooting` | 技能 | 脚本出错、卡住时怎么查，用哪些工具，怎么判断原因、派子 agent | 全部 | 全部 |
 
 ## 软件怎么用它
 
 - 打开「技能 → 技能库」时读这个仓库（整个仓库打包成一个 zip 下载，不需要装 git；走「设置 → 脚本安装」里的下载镜像），一天最多读一次，点「检查更新」立即读。
-- 按你关注的游戏、装了的脚本推荐技能，你点「下载」才会下载。下载的技能放在软件的数据目录（`skill-hub/skills/<技能名>/`），agent 马上就能用。
+- 第一次启动时自动下载 `index.json` 里写了 `"default": true` 的（现在是明日方舟、终末地、星穹铁道的游戏包和脚本包）；用户删掉的不会再自动下载。别的按你关注的游戏、装了的脚本推荐，你点「下载」才会下载。在「游戏 → 更多游戏」里勾上一个游戏，会一起下载它的游戏包和脚本包；取消勾选会一起删掉。
+- 下载的放在软件自己的数据目录（`skill-hub/skills/<名字>/`），不放 `~/.agents`、`~/.dsh` 这些别的 agent 也读的技能文件夹，agent 马上就能用。
 - 仓库里有新版本时，「技能库」和用到这个技能的脚本页上会写「有新版」和这一版改了什么，点「更新」才换。技能是**整个文件夹**：SKILL.md 和旁边的脚本、参考文件，改了哪个都算新版本。
-- 更新是整个换成仓库的版本，在软件里改过的不保留（要留下的做法，另存成自己的技能）。被换掉的上一个版本会留着，觉得新版不好可以点「回退」；回退后这一版不再提示，仓库再有更新的版本才会提示。
+- 下载的可以在「技能」页直接改；更新是整个换成仓库的版本，改过的不保留（要留下的做法，另存成自己的技能）。被换掉的上一个版本会留着，觉得新版不好可以点「回退」；回退后这一版不再提示，仓库再有更新的版本才会提示。
 - 软件版本太旧、用不了某个技能的新版时（`requires`），不会下载或更新，页面上写需要哪个版本的软件。
 - 你自己保存的技能（agent 的 `skill_save`、你自己的技能文件夹）不受这个仓库管，和这里同名时以你的为准，这里的那个不会下载。
 - 软件自带的核心技能受保护，不能修改，随软件更新。
@@ -30,14 +37,15 @@
 按游戏分：一个游戏一个文件夹，里面放这个游戏本身的技能和玩这个游戏的各个脚本的技能，和软件「技能」页的分法一样。
 
 ```
-index.json                              技能清单（软件按它列出技能）
-games/<游戏 id>/game-<游戏 id>/SKILL.md  这个游戏本身的技能（活动、界面、任务）
-games/<游戏 id>/<技能名>/SKILL.md        玩这个游戏的脚本的技能（安装、运行、报错）
+index.json                              清单（软件按它列出）
+games/<游戏 id>/game-<游戏 id>/          游戏包：game.yaml + SKILL.md（活动来源、界面、任务）
+games/<游戏 id>/<脚本包 id>/             脚本包：adg.script.yaml + SKILL.md（安装、任务、报错）
+games/<游戏 id>/<技能名>/SKILL.md        玩这个游戏的脚本的其他技能
 scripts/<技能名>/SKILL.md               不属于哪个游戏的脚本的技能
 general/<技能名>/SKILL.md               不限游戏和脚本的通用技能
 ```
 
-文件夹名就是技能名；一个脚本的主技能用脚本包 id 作名字。例如明日方舟：`games/arknights/game-arknights/`（游戏）和 `games/arknights/maa/`（MAA）。
+文件夹名就是名字；脚本包的名字就是 `adg.script.yaml` 里的 `id`，游戏包的名字是 `game-<game.yaml 里的 id>`。例如明日方舟：`games/arknights/game-arknights/`（游戏）和 `games/arknights/maa/`（MAA）。
 
 每个技能一个文件夹，里面是 `SKILL.md`（需要的话可以放图片等附带文件，SKILL.md 里用相对路径引用）。`SKILL.md` 以 frontmatter 开头：
 
@@ -57,7 +65,8 @@ description: 一两句话：做什么，用户说什么时用（agent 靠它决�
 | `name` | 是 | 技能名，和 SKILL.md 的 `name` 一致；小写字母、数字、短横线。游戏技能用 `game-<游戏 id>` |
 | `path` | 是 | 技能文件夹在仓库里的路径 |
 | `title` | 否 | 页面上显示的名字 |
-| `kind` | 否 | `game`、`script` 或 `general` |
+| `kind` | 否 | `game`、`script` 或 `general`（带 `game.yaml` 的写 `game`，带 `adg.script.yaml` 的写 `script`） |
+| `default` | 否 | `true`：软件第一次启动时自动下载（用户删掉后不再自动下载） |
 | `games` | 否 | 适用的游戏 id（软件游戏包的 id，例如 `arknights`），用来推荐 |
 | `scripts` | 否 | 适用的脚本 / 脚本包 id（例如 `maa`），用来推荐，脚本页按它提示「技能有新版」 |
 | `version` | 是* | 这个技能的版本号，`主.次.修订`（例如 `1.2.0`）。改了技能文件夹里的任何文件都要升版本号 |
@@ -71,7 +80,8 @@ description: 一两句话：做什么，用户说什么时用（agent 靠它决�
 ## 贡献
 
 - 新游戏：`games/<游戏 id>/game-<游戏 id>/SKILL.md`，写清楚活动、任务、邮件在哪个界面，剩余时间怎么写，哪些操作不能做（不花资源、不点购买）。
-- 新脚本：放到它玩的游戏下面，`games/<游戏 id>/<技能名>/SKILL.md`（不属于哪个游戏的放 `scripts/<技能名>/`），写安装要注意的、常用任务、配置文件在哪、常见报错怎么处理。
+- 新游戏包：在游戏的文件夹里放 `game.yaml`（格式见 MultiGameAssistant 的 `packages/pack-schema`）。
+- 新脚本：放到它玩的游戏下面，`games/<游戏 id>/<技能名>/SKILL.md`（不属于哪个游戏的放 `scripts/<技能名>/`），写安装要注意的、常用任务、配置文件在哪、常见报错怎么处理；做成脚本包时旁边放 `adg.script.yaml`，文件夹名用它的 `id`。
 - 改了已有技能（SKILL.md 或它文件夹里的任何文件），在 `index.json` 里把它的 `version` 升一级、`changes` 写一句改了什么；用户那边会收到「有新版」。小修改升修订号（1.1.0 → 1.1.1），加了做法升次版本号，换了做法、要用户重新设置的升主版本号。
 - 用到了新版软件才有的工具，写上 `requires`，旧版软件就不会拿到这一版。
 - 提交前可以本地跑一遍检查：`node .github/scripts/check.mjs`（和上一个提交比：`node .github/scripts/check.mjs HEAD~1`）。

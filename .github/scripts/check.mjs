@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 /**
- * 技能库的检查：index.json 和每个 SKILL.md 对得上，每个技能有版本号；
+ * 技能库的检查：index.json 和每个 SKILL.md 对得上，每个技能有版本号，
+ * 脚本包（adg.script.yaml）和游戏包（game.yaml）的 id 和文件夹对得上；
  * 给了一个 git 提交（上一个版本）时，再查改过文件的技能升了版本号。
  *
  * 用法:
@@ -51,6 +52,23 @@ for (const skill of index.skills ?? []) {
   if (skill.requires !== undefined && !REQUIRES.test(skill.requires)) fail(`${where}：requires 写法不对（例如 >=2.1.0）`)
   if (skill.changes !== undefined && skill.changes.length > 300) fail(`${where}：changes 写一句就够（300 字以内）`)
   if (skill.kind !== undefined && !['game', 'script', 'general'].includes(skill.kind)) fail(`${where}：kind 只能是 game、script、general`)
+  if (skill.default !== undefined && typeof skill.default !== 'boolean') fail(`${where}：default 只能是 true 或 false`)
+  // 脚本包：软件按文件夹名（技能名）找它，id 要一样。
+  const pack = join(skill.path, 'adg.script.yaml')
+  if (existsSync(pack)) {
+    const id = /^id:\s*([\w-]+)\s*$/m.exec(readFileSync(pack, 'utf8'))?.[1]
+    if (id !== skill.name) fail(`${pack}：id（${id ?? '没写'}）要和技能名「${skill.name}」一样`)
+    if (skill.kind !== 'script') fail(`${where}：带脚本包的技能 kind 要写 script`)
+  }
+  // 游戏包：技能名是 game-<游戏 id>。
+  const game = join(skill.path, 'game.yaml')
+  if (existsSync(game)) {
+    const id = /^id:\s*([\w-]+)\s*$/m.exec(readFileSync(game, 'utf8'))?.[1]
+    if (id === undefined || skill.name !== `game-${id}`) fail(`${game}：id（${id ?? '没写'}）对应的技能名要是 game-<id>（现在是「${skill.name}」）`)
+    if (skill.kind !== 'game') fail(`${where}：带游戏包的技能 kind 要写 game`)
+    if (id !== undefined && skill.games !== undefined && !skill.games.includes(id)) fail(`${where}：games 要包括它自己的游戏 ${id}`)
+  }
+  if (existsSync(pack) && existsSync(game)) fail(`${where}：一个文件夹只能是脚本包或游戏包之一`)
 }
 
 // 和上一个版本比：改了文件夹里任何文件的技能，版本号要比原来大。
