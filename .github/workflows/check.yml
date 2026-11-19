@@ -15,5 +15,22 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      # 格式，以及改过文件的技能升了版本号（和推送前 / PR 的目标分支比）
+      # 格式、目录（游戏/脚本/作者/技能名）、作者前缀，改过文件的技能升了版本号、旧版本写进 history（和推送前 / PR 的目标分支比）
       - run: node .github/scripts/check.mjs "${{ github.event.pull_request.base.sha || github.event.before }}"
+
+  # 推送到 main 后，每个技能的新版本打一个标签 <技能名>@<版本>：软件按标签下载那一版，往前往后都能换。
+  tag:
+    needs: check
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node .github/scripts/tag.mjs
+      - run: git push origin --tags
